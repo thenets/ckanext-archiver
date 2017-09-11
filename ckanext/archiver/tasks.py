@@ -14,6 +14,7 @@ import re
 import routes
 import time
 import urlparse
+import logging 
 
 from requests.packages import urllib3
 
@@ -137,13 +138,10 @@ def update_package(ckan_ini_filepath, package_id, queue='bulk'):
     '''
     load_config(ckan_ini_filepath)
 
-    try:
-        log = update_package.get_logger()
-        log.info('Starting update_package task: package_id=%r queue=%s',
-                 package_id, queue)
-    except Exception, e:
-        # TODO get_logger no found!
-        pass
+    #log = update_package.get_logger()
+    log = logging # HACK
+    log.info('Starting update_package task: package_id=%r queue=%s',
+             package_id, queue)
 
     # Do all work in a sub-routine since it can then be tested without celery.
     # Also put try/except around it is easier to monitor ckan's log rather than
