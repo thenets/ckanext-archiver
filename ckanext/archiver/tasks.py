@@ -138,8 +138,7 @@ def update_package(ckan_ini_filepath, package_id, queue='bulk'):
     '''
     load_config(ckan_ini_filepath)
 
-    #log = update_package.get_logger()
-    log = logging # HACK
+    log = update_package.get_logger()
     log.info('Starting update_package task: package_id=%r queue=%s',
              package_id, queue)
 
